@@ -1,0 +1,49 @@
+{
+  "settings": {
+    "number_of_shards": 1
+  },
+  "mappings": {
+      "properties": {
+        "my_field": {
+          "type": "text"
+        }
+      }
+  }
+}
+
+
+http://192.168.99.100:9200/test6/_doc/
+
+{"my_field":"disappoint"}
+
+
+
+http://192.168.99.100:9200/test6/_doc/3/
+
+http://192.168.99.100:9200/test6/_search/
+
+
+{
+  "query": { 
+     "match" : { 
+        "my_field" : "dissappoint" 
+      } 
+  } 
+}
+
+https://medium.com/@mallikarjuna91/elasticsearch-building-a-simple-spell-corrector-with-elasticsearch-25bca2573975
+
+
+http://192.168.99.100:9200/test6/_search/
+
+POST test/_search 
+{ 
+  "suggest" : { 
+   "mytermsuggester" : { 
+      "text" : "dissappoint", 
+      "term" : { 
+         "field" : "my_field" 
+       } 
+    } 
+  } 
+}
